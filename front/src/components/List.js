@@ -9,18 +9,20 @@ export default class List extends React.Component {
   render() {
     return (
       <div className="container">
-      	{
-      		this.props.lists.map(
-      			item => (
-      				<div className="row" key={ item._id.toString()}>
-      					<h2> {item.title} </h2>
-	  					<ul className="list-group" >
-	  						<li className="list-group-item"><Task tasks={item.tasks}/></li>
-	  					</ul>
-  					</div>
-  				)
-  			)	
-      	}
+        <div className="row">
+        	{
+        		this.props.lists.map(
+        			item => (
+      				  <div className="col-sm-6" key={ item._id.toString()}>
+        					<h2> {item.title} </h2>
+  	  					  <ul className="list-group" >
+  	  						 <li className="list-group-item"><Task tasks={item.tasks}/></li>
+  	  					  </ul>
+                </div>
+    				  )
+            )	
+        	}
+        </div>
       </div>
     );
   }
