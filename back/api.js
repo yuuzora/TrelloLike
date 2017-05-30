@@ -25,7 +25,7 @@ router.post('/lists', ListController.createList);
 // router.put('/lists/:id', ListController.updateList);
 // router.delete('/lists/:id', ListController.deleteList);
 router.post('/lists/:id/task', ListController.createTask);
-router.put('/lists/:id/task/:taskId', ListController.updateTask);
+//router.put('/lists/:id/task/:taskId', ListController.updateTask);
 // router.delete('/lists/:id/task/:taskId', ListController.deleteTask);
 
 

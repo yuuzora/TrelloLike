@@ -4,7 +4,12 @@ import List from './components/List';
 
 export default class App extends Component {
     state = {
-        lists: []
+        lists: [],
+        list: {},
+        task: {},
+        taskList:  {
+            title: ''
+        }
     };
 
     componentDidMount() {
@@ -13,7 +18,8 @@ export default class App extends Component {
             return response.json()
         }).then((json) => {
             this.setState({
-                lists: json
+                lists: json,
+                taskList : {title: json[0]._id } 
             });
         }).catch(function(ex) {
             'Fail'
@@ -30,7 +36,7 @@ export default class App extends Component {
                                 <h1 className="display-3">TrelloLike</h1>
                                 <p className="lead">This is shitty todolist.</p>
                             </div>
-                            <Form lists={this.state.lists} />
+                            <Form state={this.state} />
                         </div>
                     </div>
                 </div>
