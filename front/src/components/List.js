@@ -1,29 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Task from './Task'
 
-export default class List extends React.Component {
-  static propTypes = {
-    name: React.PropTypes.string,
-  };
-
-  render() {
-    return (
-      <div className="container">
-        <div className="row">
-        	{
-        		this.props.lists.map(
-        			item => (
-      				  <div className="col-sm-6" key={ item._id.toString()}>
-        					<h2> {item.title} </h2>
-  	  					  <ul className="list-group" >
-  	  						 <li className="list-group-item"><Task tasks={item.tasks}/></li>
-  	  					  </ul>
-                </div>
-    				  )
-            )	
-        	}
-        </div>
-      </div>
-    );
-  }
+export default class List extends Component {
+    render() {
+        return (
+            <div className="panel panel-default" key={this.props.list._id.toString()}>
+                <div className="panel-heading">{this.props.list.title}</div>
+  	  			<ul className="list-group">
+                    {this.props.list.tasks.map(task => (
+                    <Task task={task} />
+                    ))}
+  	  			</ul>
+            </div>
+        );
+    }
 }

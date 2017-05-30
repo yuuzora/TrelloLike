@@ -1,42 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Lists from './components/List';
-import './App.css';
+import Form from './components/Form';
+import List from './components/List';
 
-
-class App extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
+export default class App extends Component {
+    state = {
         lists: []
-      };
+    };
+
+    componentDidMount() {
+        fetch('http://localhost:5000/api/lists')
+        .then(function(response) {
+            return response.json()
+        }).then((json) => {
+            this.setState({
+                lists: json
+            });
+        }).catch(function(ex) {
+            'Fail'
+        })
     }
 
-  componentDidMount() {
-    fetch('http://localhost:5000/api/lists')
-    .then(function(response) {
-      return response.json()
-    }).then((json) => {
-      this.setState({
-          lists: json
-        });
-      }).catch(function(ex) {
-        'Fail'
-      })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Trello</h2>
-        </div>
-        <h2> Current list of tasks </h2>
-        <Lists lists={ this.state.lists }/>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <div className="jumbotron">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-6">
+                                <h1 className="display-3">TrelloLike</h1>
+                                <p className="lead">This is shitty todolist.</p>
+                            </div>
+                            <Form lists={this.state.lists} />
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="row">
+                        {this.state.lists.map(list => (
+                        <List list={list}/>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
-
-export default App;
