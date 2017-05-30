@@ -5,7 +5,8 @@
   "dependencies": {
     "concurrently": "^3.4.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
