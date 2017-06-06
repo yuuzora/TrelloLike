@@ -20,6 +20,8 @@ const ListController = {
 	      if (err) {
 	        return res.send(err);
 	      }
+	      req.app.io.emit('newItem', {message: 'A list was created'});
+	      console.log('new list created');
 	      res.json({
 	        message: `List ${list.title} created !`
 	      });
@@ -72,6 +74,8 @@ const ListController = {
 		      if (err) {
 		        return res.send(err);
 		      }
+		      req.app.io.emit('newItem', {message: 'A task was created'});
+	      	  console.log('new list created');
 		      res.json({
 		        message: `Task created into list ${list.title} !`
 		      });

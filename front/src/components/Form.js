@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 const io = require('socket.io-client')  
-const socket = io('http://localhost:5000')  
+let socket = io('http://localhost:5000')  
+ 
+
 export default class Form extends Component {
-
+   
     state = this.props.state;
-
+    componentDidMount() {  
+        socket.on('newItem', function (data) {
+            location.reload();
+        });
+    }
     handleChangeListTitle(event) {
         this.setState({list: {
             title: event.target.value,
