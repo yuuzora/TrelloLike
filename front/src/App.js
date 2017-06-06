@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io';
 import Form from './components/Form';
 import List from './components/List';
 
@@ -19,11 +20,11 @@ export default class App extends Component {
         }).then((json) => {
             this.setState({
                 lists: json,
-                taskList : {title: json[0]._id } 
+                taskList : {title: json[0]._id }
             });
         }).catch(function(ex) {
             'Fail'
-        })
+        });
     }
 
     render() {
