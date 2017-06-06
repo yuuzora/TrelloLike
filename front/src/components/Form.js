@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+const io = require('socket.io-client')  
+const socket = io('http://localhost:5000')  
 export default class Form extends Component {
 
     state = this.props.state;

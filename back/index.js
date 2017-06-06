@@ -1,7 +1,13 @@
 var express = require('express')
 const Api = require('./Api');
-
 var app = express()
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -19,6 +25,9 @@ app.get('/*', function (req, res) {
 })
  
 const port = process.env.PORT || 5000;
-app.listen( port, function () {
-  console.log(`Example app listening on port ${port}!`);
+// app.listen( port, function () {
+//   console.log(`Example app listening on port ${port}!`);
+// });
+http.listen(port, function(){
+  console.log('listening on *:5000');
 });
