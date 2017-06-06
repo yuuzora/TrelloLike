@@ -1,21 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import io from 'socket.io';
+import Form from './components/Form';
+import List from './components/List';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+export default class App extends Component {
+    state = {
+        lists: [],
+        list: {},
+        task: {},
+        taskList:  {
+            title: ''
+        }
+    };
+
+    componentDidMount() {
+        fetch('http://localhost:5000/api/lists')
+        .then(function(response) {
+            return response.json()
+        }).then((json) => {
+            this.setState({
+                lists: json,
+                taskList : {title: json[0]._id }
+            });
+        }).catch(function(ex) {
+            'Fail'
+        });
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div className="jumbotron">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xs-6">
+                                <h1 className="display-3">TrelloLike</h1>
+                                <p className="lead">This is shitty todolist.</p>
+                            </div>
+                            <Form state={this.state} />
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="row">
+                        {this.state.lists.map(list => (
+                        <List list={list}/>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
-
-export default App;
