@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-# Trello Like
-
-Super trello like developed with Node, Express, React and Mongo.
-
-## Contibutors
-
-- Axel-Charpentier <[axelcharpentier0@gmail.com](axelcharpentier0@gmail.com)>
-- Hugo Capezzone <[hugo.capezzone@gmail.com](hugo.capezzone@gmail.com)>
-=======
 # TrelloLike
 
 TrelloLike est une application web permettant d'ajouter des tâches et des listes de tâches.
@@ -43,4 +33,3 @@ Ensuite, il suffit d'ajouter des listes et des tâches, l'interface est relative
 
 - [Axel-Charpentier](https://github.com/Axel-Charpentier)
 - [Zack-Strife](https://github.com/Zack-Strife)
->>>>>>> dev
